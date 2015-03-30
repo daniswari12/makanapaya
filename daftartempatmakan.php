@@ -16,63 +16,100 @@
 <div id="navigasi">
   <label for="username2"><br />
   </label>
-  <input name="username" type="text" id="username2" value="username" />
-  <input name="password" type="password" id="password" value="password" />
-  <input type="submit" name="login" id="login" value="Sign in" />
-  <input type="submit" name="sign up" id="sign up" value="Sign up" />
+  <table width="100%" border="0">
+    <tr>
+      <th width="100%" align="right" valign="middle" scope="row"><form action="actionloginvisitor.php" method="post">
+      <input name="username" type="text" id="username2" value="username" />
+        <input name="password" type="password" id="password" value="password" />
+        <input type="submit" name="login" id="login" value="Sign in" /></th>
+      <th width="67" align="right" valign="middle" scope="row"> <form action="signup.php">
+        <input name="signup" type="submit" id="signup" formaction="signup.php" value="Sign up" />
+      </form></th>
+    </tr>
+  </table>
+  <label for="username2">    <br />
+  </label>
 </div>
-<table width="677" border="0" cellspacing="5">
+<table width="900" border="0" cellspacing="5">
   <tr>
-    <td width="158">Daftar Tempat Makan</td>
-    <td width="271">&nbsp;</td>
+    <td width="57" style="font-size: 14px"><a href="index.php">Beranda</a></td>
+    <td width="97" style="font-size: 14px"><a href="tentangkami.php">Tentang Kami</a></td>
+    <td width="158" style="font-size: 14px">Daftar Tempat Makan</td>
+    <td width="271" style="font-size: 14px"><a href="kontak.php">Kontak</a></td>
     <td width="222"><label for="search"></label>
-    <input name="search" type="text" id="search" value="search" /></td>
+      <input name="search" type="text" id="search" value="search" /></td>
   </tr>
 </table>
 <div align="left"></div>
 <div id="conten">
   <table width="200" height="307" border="0" align="left">
     <tr>
-      <th align="left" scope="row"><p align="justify"><strong>Cari Berdasarkan Kategori</strong></p>
-        <p align="justify">
-          <label for="harga">Harga</label>
+      <th align="left" scope="row"><strong style="font-family: Arial; font-size: 16px;">Cari Berdasarkan Kategori</strong></th>
+    </tr>
+    <tr>
+      <th align="left" scope="row"><p align="justify">
+        <label for="harga"><span style="font-family: Arial; font-size: 12px;">Harga</span></label>
+        <span style="font-family: Arial">
           <select name="harga" id="harga">
           </select>
-        </p>
-        <p align="justify">
+        </span></p>
+        <p align="justify"> <span style="font-family: Arial; font-size: 12px;">
           <label for="lokasi">Lokasi</label>
           <select name="lokasi" id="lokasi">
           </select>
-        </p>
-        <p align="justify">
+        </span></p>
+        <p align="justify"> <span style="font-family: Arial; font-size: 12px;">
           <label for="jenismakanan">Jenis Makanan</label>
           <select name="jenismakanan" id="jenismakanan">
           </select>
-        </p>
-        <p align="justify">
+        </span></p>
+        <p align="justify"> <span style="font-family: Arial; font-size: 12px;">
           <label for="jenistempatmakanan">Jenis Tempat Makanan</label>
           <select name="jenistempatmakanan" id="jenistempatmakanan">
           </select>
-        </p>
-        <p align="justify">
+        </span></p>
+        <p align="justify"> <span style="font-family: Arial; font-size: 12px;">
           <label for="rating">Rating</label>
           <select name="rating" id="rating">
           </select>
-        </p></th>
+        </span><span style="font-size: 12px"> </span></p></th>
     </tr>
-</table>
+    </table>
+  <table width="600" border="0" cellpadding="8" cellspacing="10">
+    <tr>
+      <td colspan="2" bgcolor="#99CCCC" style="font-family: Arial">Daftar Tempat Makan</td>
+      </tr>
+    <tr>
+      <td width="254" bgcolor="#FFFFFF">&nbsp;
+      <?php
+
+include('connect.php');
+
+session_start();
+$query = "SELECT * FROM tempatmakan";
+$sql = mysql_query ($query);
+while ($hasil = mysql_fetch_array ($sql)){
+ $nama = stripslashes ($hasil['nama']);
+ $alamat = stripslashes ($hasil['alamat']);
+ $tlp = stripslashes ($hasil['tlp']);
+ $email = stripslashes ($hasil['email']);
+ $deskripsi = stripslashes ($hasil['deskripsi']);
+
+ //tampilkan berita
+ 
+ echo "".$nama."<br>";
+ echo "".$alamat."<br>";
+ echo "".$tlp."<br>";
+ echo "".$email."<br>";
+ echo "".$deskripsi."<br><br>";
+
+}
+?>
+      </td>
+      <td width="254" height="238" bgcolor="#D6D6D6">&nbsp;</td>
+    </tr>
+  </table>
 </div>
-<table width="900" border="0" cellpadding="8" cellspacing="10">
-  <tr>
-    <td width="254" bgcolor="#99CCCC">Tambah Makan Populer Bulan Ini</td>
-    <td colspan="2" bgcolor="#99CCCC">Tempat Makan Baru</td>
-  </tr>
-  <tr>
-    <td height="238" bgcolor="#D6D6D6">&nbsp;</td>
-    <td width="291" bgcolor="#D6D6D6">&nbsp;</td>
-    <td width="299" bgcolor="#D6D6D6">&nbsp;</td>
-  </tr>
-</table>
 <p>&nbsp;</p>
 </center>
 </body>
